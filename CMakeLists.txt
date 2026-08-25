@@ -7,4 +7,5 @@ add_executable(CPP_EXS main.cpp
         TEST/Test.cpp
         HW_1/Ex1.cpp
         HW_1/Ex2.cpp
-        HW_2/Ex3.cpp)
+        HW_2/Ex3.cpp
+        HW_2/Ex4.cpp)
