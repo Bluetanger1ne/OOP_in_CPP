@@ -11,11 +11,10 @@ int main() {
     char character_to_find;
     char replacement_character;
 
-    auto valid_command = false;
-    auto valid_character = false;
-    auto valid_replacement = false;
-
     while (true) { // Loop until user enters "Stop" or "stop"
+        auto valid_character = false;
+        auto valid_replacement = false;
+        auto valid_command = false;
         while (!valid_command) { // --------------------------------------------------------------------------- Command validation and saving---------------------
             std::cout << "Please enter a string or \"stop\" to stop" << std::endl;
             std::getline(std::cin, command);
@@ -31,6 +30,7 @@ int main() {
         while (!valid_character) { // --------------------------------------------------------------------------- Target character validation and saving---------------------
             std::cout << "Enter a character to find: " << std::endl;
             std::cin >> character_to_find;
+
             if (!validate_character(character_to_find)) {
                 std::cout << "Please only input letters!" << std::endl;
             } else {
@@ -81,6 +81,7 @@ int validate_string(const std::string &input) {
 
 int validate_character(char c) {
     if (!isalpha(c)) {
+        std::cin.clear();
         std::cin.ignore(10000, '\n');
         return 0;
     }

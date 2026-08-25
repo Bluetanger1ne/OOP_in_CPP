@@ -2,6 +2,7 @@
 #include <vector>
 #include <iomanip>
 
+
 int main() {
     std::cout << "How many numbers do you want to enter?" << std::endl;
     int size = 0;

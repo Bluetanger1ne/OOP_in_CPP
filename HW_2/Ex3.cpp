@@ -42,7 +42,6 @@ int main() {
     }
 }
 
-
 std::vector<std::string> find_all_elements(const std::string &xml, std::string tag_name)
 {
     std::vector<std::string> elements;
