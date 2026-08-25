@@ -3,9 +3,7 @@
 #include <cctype>
 
 int validate_string(const std::string &input);
-
 int validate_character(char c);
-
 bool replacement(std::string &input, char target, char replacement);
 
 int main() {
