@@ -168,7 +168,7 @@ int main() {
             return 0;
         }
         int index = std::stoi(choice);
-        if (index < 1 || index >= items.size()) {
+        if (index < 1 || index > items.size()) {
             std::cout << "Enter a valid index please..!" << std:: endl;
         } else {
             int disc;
@@ -186,7 +186,7 @@ int main() {
         double total2 = 0;
 
         for (const auto &item : items) {
-            total += item.getPrice();
+            total2 += item.getPrice();
         }
 
         std::cout << "\nNet worth: " << total2 << "\n" << std::endl;
