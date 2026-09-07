@@ -7,7 +7,7 @@
 
 class Item {
 public:
-    Item() = default; //Default constructor
+    Item() {}; //Default constructor
     Item(std::string name, int weight, double price, int discount) { // Constructor
         this->name = name;
         this->weight = weight;
@@ -16,7 +16,7 @@ public:
     }
 
     friend std::ostream &operator<<(std::ostream &out, const Item &item); // Output operator
-    friend std::istream &operator>>(std::istream &in, Item &item); // Output operator
+    friend std::istream &operator>>(std::istream &in, Item &item); // Input operator
 
     int getDiscount() const {
         return discount;
@@ -115,7 +115,7 @@ int main() {
     int discount;
     while (asking) {
         std::cout << "please enter the name of the item, \"json\" for JSON formatted data, or \"stop\" to stop: " << std::endl;
-        std::cin >> name;
+        std::getline(std::cin,name,'\n');
         if (!std::cin) {
             std::cout << "Input failed!" << std::endl;
             break;
@@ -145,15 +145,17 @@ int main() {
 
             Item item(name, weight, price, discount);
             items.push_back(item);
+            std::cin.clear();
+            std::cin.ignore(10000, '\n');
         }
     }
-    std::sort(items.begin(), items.end());
+    std::sort(items.begin(), items.end()); // Sort the items and display them with index numbers.
     for (int i = 0; i < items.size(); i++) {
         std::cout << i+1 << ": " << items[i] << std::endl;
     }
     double total = 0;
 
-    for (auto &item: items) {
+    for (auto &item: items) { // Get the prices for each item and them to the net worth.
         double p = item.getPrice();
         total += p;
     }
