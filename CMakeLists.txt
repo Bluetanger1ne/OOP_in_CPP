@@ -9,4 +9,5 @@ add_executable(Ex2 HW_1/Ex2.cpp)
 add_executable(Ex3 HW_2/Ex3.cpp)
 add_executable(Ex4 HW_2/Ex4.cpp)
 add_executable(Ex5 HW_3/Ex5.cpp)
+add_executable(Ex6 HW_3/Ex6.cpp)
 
