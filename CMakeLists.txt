@@ -3,8 +3,14 @@ project(CPP_EXS)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+target_link_libraries(${PROJECT_NAME}
+        pico_stdlib
+        hardware_pwm
+        hardware_gpio
+)
 
-add_executable(Ex1 HW_1/Ex1.cpp)
+add_executable(Ex1 HW_1/Ex1.cpp
+        HW_4/Ex7.cpp)
 add_executable(Ex2 HW_1/Ex2.cpp)
 add_executable(Ex3 HW_2/Ex3.cpp)
 add_executable(Ex4 HW_2/Ex4.cpp)

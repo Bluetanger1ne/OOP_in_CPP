@@ -52,7 +52,7 @@ private:
 };
 
 
-std::ostream &operator<<(std::ostream &out, const Item &item) {
+std::ostream &operator<<(std::ostream &out, const Item &item) { // Overloaded output operator
     out << "{ \"Name\":\"" << item.name
             << "\", \"Weight\":" << item.weight
             << ", \"Price\":" << item.price
@@ -62,7 +62,7 @@ std::ostream &operator<<(std::ostream &out, const Item &item) {
     return out;
 }
 
-std::istream &operator>>(std::istream &in, Item &item) {
+std::istream &operator>>(std::istream &in, Item &item) { // Overloaded input operator
     std::string line;
     std::getline(in >> std::ws, line); // get line and ignore white space.
 
@@ -78,7 +78,7 @@ std::istream &operator>>(std::istream &in, Item &item) {
     std::size_t discountStart = line.find("\"Discount\":", priceEnd); // find discount location
     std::size_t discountEnd = line.find("}", discountStart);
 
-    if (nameStart == std::string::npos || // Check that data is formatted correctly
+    if (nameStart == std::string::npos || // Check that data is formatted correctly and not empty
         nameEnd == std::string::npos ||
         weightStart == std::string::npos ||
         weightEnd == std::string::npos ||
@@ -114,7 +114,7 @@ int main() {
     double price;
     int discount;
     while (asking) {
-        std::cout << "please enter the name of the item, \"json\" for JSON formatted data, or \"stop\" to stop: " << std::endl;
+        std::cout << "Please enter the name of the item, \"json\" for JSON formatted data, or \"stop\" to stop: " << std::endl;
         std::getline(std::cin,name,'\n');
         if (!std::cin) {
             std::cout << "Input failed!" << std::endl;
@@ -134,7 +134,7 @@ int main() {
                 items.push_back(item);
             }
         } else {
-            std::cout << "please enter the weight of the item: " << std::endl;
+            std::cout << "Please enter the weight of the item: " << std::endl;
             std::cin >> weight;
 
             std::cout << "please enter the price of the item: " << std::endl;
@@ -155,11 +155,11 @@ int main() {
     }
     double total = 0;
 
-    for (auto &item: items) { // Get the prices for each item and them to the net worth.
+    for (auto &item: items) { // Get the prices for each item and add them to the net worth.
         double p = item.getPrice();
         total += p;
     }
-    std::cout << "\nNet worth: " << total << "\n" <<std::endl;
+    std::cout << "\nNet worth: " << total << std::endl;
 
     while (true) {
         std::string choice;

@@ -18,13 +18,10 @@ public:
     }
 
     bool addPassenger(const std::shared_ptr<Passenger> &passenger);
-
     bool removePassenger(const std::string &first_name, const std::string &last_name);
-
     void printPassengers();
 
     friend std::ostream &operator<<(std::ostream &out, const Flight &flight);
-
     friend std::ostream &operator<<(std::ostream &out, const Passenger &passenger);
 
     friend class Passenger;
@@ -50,12 +47,9 @@ public:
     }
 
     void print_info();
-
-    bool hasName(std::string first_name, std::string last_name) {
-        return this->first_name == first_name &&
-               this->last_name == last_name;
+    bool hasName(std::string first_name, std::string last_name) { // Used for removal of passengers, not actually used in this example
+        return this->first_name == first_name && this->last_name == last_name;
     }
-
     void addFlight(const std::shared_ptr<Flight> &flight);
 
     friend std::ostream &operator<<(std::ostream &out, const Passenger &passenger);
@@ -123,7 +117,7 @@ void Passenger::print_info() {
     std::cout << "\n";
 }
 
-std::ostream &operator<<(std::ostream &out, const Flight &flight) {
+std::ostream &operator<<(std::ostream &out, const Flight &flight) { // Flight comparison
     // Overloaded output operator
     out << "\nName :" << flight.flight_no_and_name << "\n"
             << "Max passengers: " << flight.max_passengers << "\n"
@@ -132,7 +126,7 @@ std::ostream &operator<<(std::ostream &out, const Flight &flight) {
     return out;
 }
 
-std::ostream &operator<<(std::ostream &out, const Passenger &passenger) {
+std::ostream &operator<<(std::ostream &out, const Passenger &passenger) { // Passenger comparison by last name and then by first name
     // Overloaded output operator
     out << "\n   Name :" << passenger.first_name << " " << passenger.last_name << "\n"
             << "   Number of bags: " << passenger.no_of_bags << "\n"
@@ -193,7 +187,7 @@ int main() {
         std::cout << "Please enter number of bags for passenger no." << passenger + 1 << ": " << std::endl;
         std::cin >> bags;
 
-        passengers.push_back(std::make_shared<Passenger>(f_name, l_name, bags));
+        passengers.push_back(std::make_shared<Passenger>(f_name, l_name, bags)); // Make new passengers
 
         for (int i = 0; i < flights.size(); i++) {
             std::cout << i + 1 << ": " << *flights[i] << std::endl;
@@ -220,21 +214,21 @@ int main() {
         }
     }
 
-    std::sort(flights.begin(), flights.end(), [](auto &a, auto &b) {
+    std::sort(flights.begin(), flights.end(), [](auto &a, auto &b) { // Sort Flights
         return *a > *b;
     });
-    std::sort(passengers.begin(), passengers.end(), [](auto &a, auto &b) {
+    std::sort(passengers.begin(), passengers.end(), [](auto &a, auto &b) { // Sort passengers
         return *a < *b;
     });
 
-    std::cout << "---------Flight information---------" << "\n";
+    std::cout << "---------Flight information---------" << "\n"; // Print flight info
 
     for (int i = 0; i < flights.size(); i++) {
         std::cout << i + 1 << ". " << *flights[i] << "\n";
         flights[i]->printPassengers();
     }
 
-    std::cout << "---------Passenger information---------" << "\n";
+    std::cout << "---------Passenger information---------" << "\n"; // Print passenger info
 
     for (int i = 0; i < passengers.size(); i++) {
         std::cout << i + 1 << ". " << *passengers[i] << "\n";
